@@ -1,29 +1,34 @@
 <template>
-    <div class="body">
-        <!-- <p>
-            登录界面
-        </p> -->
-       
-        <div class="container">
-            <div class="login-wrapper">
-                <div class="header">Login</div>
-                <div class="form-wrapper">
-                    <input type="text" name="username" placeholder="username" class="input-item">
-                    <input type="password" name="password" placeholder="password" class="input-item">
-                    <div class="btn">Login</div>
-                </div>
-                <div class="msg">
-                    Don't have account?
-                    <a href="#">Sign up</a>
-                </div>
+    <div class="container">
+        <div class="login-wrapper">
+            <div class="header">Login</div>
+            <div class="form-wrapper">
+                <input type="text" name="username" placeholder="username" class="input-item">
+                <input type="password" name="password" placeholder="password" class="input-item">
+                <div class="btn">Login</div>
+            </div>
+            <div class="msg">
+                Don't have account?
+                <a href="#">Sign up</a>
             </div>
         </div>
-       
     </div>
 </template>
 <script lang="ts">
+import { onMounted } from 'vue';
+import {getInfo} from '../utils/test';
+
     export default {
-        name: 'login'
+        name: 'login',
+        setup() {
+            onMounted(()=>{
+                getInfo().then((response) => {
+                    console.log("vvvvv");
+                }).catch(error=>{
+                    console.log("err");
+                });
+            })
+        }
     }
 </script>
 
@@ -35,10 +40,10 @@
     /* html {
         height: 100%;
     } */
-    body {
+    /* body {
         display: block;
         height: 100%;
-    }
+    } */
     .container {
         height: 100%;
         background-image: linear-gradient(to right, #fbc2eb, #a6c1ee);
