@@ -1,6 +1,6 @@
 <template>
     <div align="center">
-        <h1>NotFound</h1>
+        <h1>404, 页面被外星人绑架了</h1>
     </div>
 </template>
 
