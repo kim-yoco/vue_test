@@ -26,7 +26,6 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 ---|router           -- vue-router vue路由的配置文件，
 ---|store            -- 存放 vuex 为vue专门开发的状态管理器，
 ---|views            -- 存放视图文件，
----|utils            -- 工具类
 ---|App.vue          -- 根组件，这个在Vue2中也有
 ---|main.ts          -- 入口文件，因为采用了TypeScript所以是ts结尾
 ---|shims-vue.d.ts   -- 类文件(也叫定义文件)，因为.vue结尾的文件在ts中不认可，所以要有定义文件
