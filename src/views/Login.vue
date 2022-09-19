@@ -21,6 +21,7 @@ import {getInfo} from '../utils/test';
     export default {
         name: 'login',
         setup() {
+            console.log();
             onMounted(()=>{
                 getInfo().then((response) => {
                     console.log("vvvvv");
@@ -29,6 +30,7 @@ import {getInfo} from '../utils/test';
                 });
             })
         }
+        
     }
 </script>
 
