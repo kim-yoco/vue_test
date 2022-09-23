@@ -1,4 +1,4 @@
-import { defineConfig, loadEnv, optimizeDeps } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import path from "path";
 // 引入自动导入组件
@@ -72,44 +72,42 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // })
 
 export default defineConfig(({mode}) => {
-  let env = loadEnv(mode,process.cwd(),'.env')
-  const port = 5193
-  const host = '0.0.0.0'
-  console.log(mode)
-  if (mode === 'serve') {
-    const port = 5183
-    const host = '0.0.0.0'
-  }
+  // 加载环境变量（模式，路径，前缀）
+  let env = loadEnv(mode,process.cwd(),'VUE_')
+  // throw new Error(env.VUE_APP_BASE_API);
+  const port = parseInt(env.VUE_APP_PORT);
+  const host = env.VUE_APP_HOST;
+
   const plugin = [
-        vue(),
-        AutoImport({
-          //引入组件
-          resolvers:[ElementPlusResolver()],
-        }),
-        Components({
-          //引入组件
-          resolvers:[ElementPlusResolver()],
-        })
-      ];
+    vue(),
+    AutoImport({
+      //引入组件
+      resolvers:[ElementPlusResolver()],
+    }),
+    Components({
+      //引入组件
+      resolvers:[ElementPlusResolver()],
+    })
+  ];
   const resolve = {
-      alias: {
-        "@": path.resolve(__dirname, "src"),
-      },
-    };
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  };
   const build = {
-      outDir: "dist",
-      // 静态资源存放路径
-      assetsDir: "assets",
-      //是否构建 source map 文件
-      sourcemap: false,
-      terserOptions: {
-        // 生成环境移除console debugger
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
+    outDir: "dist",
+    // 静态资源存放路径
+    assetsDir: "assets",
+    //是否构建 source map 文件
+    sourcemap: false,
+    terserOptions: {
+      // 生成环境移除console debugger
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
-    };
+    },
+  };
     
   const server = {
     https: false,
